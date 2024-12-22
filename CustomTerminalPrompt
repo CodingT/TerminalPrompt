@@ -1,0 +1,30 @@
+LINUX  Terminal customization
+
+need to edit  ~/.bashrc  (will load it for all users) file  and export custom PS1 variable: 
+(or ~/.bash_profile  to change it only for current user)
+
+#WorkStyle:
+export PS1=" \e[1;37m[\e[1;33m\t\e[1;37m]\e[1;37m[\e[0;32m\u\e[0;36m@\e[0;32m\h\e[1;37m]\e[1;37m[\e[0;31m\w\e[1;37m]$\n:"
+
+
+#myPreference
+export PS1="\e[1;37m[\e[1;35m\t\e[1;37m]\e[1;37m[\e[0;36m\u\e[0;33m@\e[0;32m\h\e[1;37m]\e[1;37m[\e[0;33m\w\e[1;37m]\n $:"  
+
+
+#My RedHat, with red root prompt and red hours and minutes time format. then fancy prompt for regular users 
+enter bellow to vim /etc/bashrc  and relogin (change for all users)
+
+if [ $(id -u) -eq 0 ];
+then
+	PS1="\e[1;37m[\e[0;31m\A\e[1;37m]\e[1;37m[\e[0;31m\u\e[0;33m@\e[0;32m\h\e[1;37m]\e[1;37m[\e[0;33m\w\e[1;37m]\n \[\e[0;31m\[ #:\e[1;37m\] "
+else
+    PS1="\e[1;37m[\e[1;35m\A\e[1;37m]\e[1;37m[\e[0;36m\u\e[0;33m@\e[0;32m\h\e[1;37m]\e[1;37m[\e[0;33m\w\e[1;37m]\n $: "
+fi
+
+
+#mac users famous
+export PS1="\[\e[35m\]\t\[\e[m\]-\[\e[36m\]\u\[\e[m\]@\[\e[32m\]\h:\[\e[33;1m\]\w\[\e[m\]\$ "
+
+
+reference:
+https://www.notion.so/Customizing-Your-Bash-Prompt-ef312daad923421c859bda89a5dd1792
