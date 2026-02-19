@@ -131,9 +131,20 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 EOF
 
 # --- 8. Set Default Shell ---
-if [ "$SHELL" != "$(which zsh)" ]; then
-    sudo chsh -s $(which zsh) $USER
+echo "Setting ZSH as the default shell..."
+# Find the actual path of zsh
+ZSH_PATH=$(which zsh)
+
+# Use sudo to change the shell for the current user
+if [ "$SHELL" != "$ZSH_PATH" ]; then
+    sudo chsh -s "$ZSH_PATH" "$USER"
 fi
 
-echo "Configuration complete. Restarting shell..."
-exec zsh
+# --- 9. Final Verification ---
+echo "-------------------------------------------------------"
+echo "Configuration complete!"
+echo "If you still see 'sh-5.3$', please log out and back in."
+echo "-------------------------------------------------------"
+
+# Force the current process to switch to zsh immediately
+exec "$ZSH_PATH" -l
